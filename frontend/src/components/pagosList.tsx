@@ -49,7 +49,7 @@ export default function PagosList({
     <div className="mt-6">
       <div className="flex items-center justify-center mb-4">
         <h3 className="text-lg font-semibold text-indigo-100">
-          Lista de Pagos
+          Lista de Pagamentos
         </h3>
       </div>
 
@@ -184,7 +184,7 @@ export default function PagosList({
         </div>
       ) : (
         <div className="text-center py-6 text-gray-400">
-          <p>Nenhum gasto registrado ainda</p>
+          <p>Nenhum pagamento registrado ainda</p>
         </div>
       )}
     </div>

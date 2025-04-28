@@ -35,10 +35,8 @@ controle-financeiro/
 ✅ Exclusão de itens  
 
 ## 🚧 Funcionalidades Pendentes
-
-⏳ Edição dos ganhos (em desenvolvimento)  
-⏳ Status de pagamento (boolean) para gastos  
-⏳ Configuração da listagem de ganhos
+ 
+⏳ Área de login, cadastro e redefinição de senha 
 
 ## 🖼️ Screenshots
 <img src="./frontend/public/interface.png">

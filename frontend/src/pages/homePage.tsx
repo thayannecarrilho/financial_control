@@ -41,6 +41,15 @@ export default function HomePage() {
     }
   };
 
+  const atualizarHome = async () => {
+    try {
+      const abasData = await listarAbas();
+      setAbas(abasData);
+    } catch (error) {
+      console.error("Erro ao atualizar abas:", error);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 p-4 md:p-8">
       <div className="max-w-3xl mx-auto">
@@ -83,7 +92,7 @@ export default function HomePage() {
 
           {abas.length > 0 ? (
             <div className="grid gap-3">
-              <AbaList abas={abas} />
+              <AbaList abas={abas} onAbaExcluida={atualizarHome} />
             </div>
           ) : (
             <div className="text-center py-8 text-gray-400">
