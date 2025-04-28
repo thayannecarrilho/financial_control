@@ -4,7 +4,7 @@ exports.criarGasto = async (req, res) => {
     try {
         const { aba_id, descricao, valor, observacao } = req.body;
         const id = await Gasto.criar(aba_id, descricao, valor, observacao);
-        res.status(201).json({ id, aba_id, descricao, valor, observacao });
+        res.status(201).json({ id, aba_id, descricao, valor, observacao});
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -36,3 +36,13 @@ exports.excluirGasto = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+
+exports.atualizarPago = async(req, res) => {
+    try {
+        await Gasto.atualizar(req.params.id);
+        res.json({ message: 'Gasto atualizado com sucesso'})        
+    } catch(error) {
+        res.status(500).json({ message: error.message })
+    }
+}

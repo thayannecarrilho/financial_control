@@ -3,6 +3,7 @@ const router = express.Router();
 const abasController = require('../controllers/abasController');
 const ganhosController = require('../controllers/ganhosController');
 const gastosController = require('../controllers/gastosController');
+const { atualizar } = require('../models/gasto');
 
 router.post('/abas', abasController.criarAba);
 router.get('/abas', abasController.listarAbas);
@@ -16,6 +17,7 @@ router.get('/abas/:aba_id/gastos/total', gastosController.calcularTotalGastos);
 router.delete('/abas/:id', abasController.excluirAba);
 router.delete('/ganhos/:id', ganhosController.excluirGanho);
 router.delete('/gastos/:id', gastosController.excluirGasto);
+router.put('/gastos/:id', gastosController.atualizarPago)
 
 
 

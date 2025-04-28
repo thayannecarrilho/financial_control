@@ -3,8 +3,8 @@ const db = require('../config/db');
 class Gasto {
     static async criar(aba_id, descricao, valor, observacao) {
         const [result] = await db.execute(
-            'INSERT INTO gastos (aba_id, descricao, valor, observacao) VALUES (?, ?, ?, ?)',
-            [aba_id, descricao, valor, observacao || null]
+            'INSERT INTO gastos (aba_id, descricao, valor, observacao, pago) VALUES (?, ?, ?, ?, ?)',
+            [aba_id, descricao, valor, observacao || null, true]
         );
         return result.insertId;
     }
@@ -22,6 +22,10 @@ class Gasto {
     static async excluir(id) {
         await db.execute('DELETE FROM gastos WHERE id = ?', [id]);
         return true;
+    }
+
+    static async atualizar(id) {
+        await db.execute('UPDATE gastos SET pago = NOT pago WHERE id = ?', [id])
     }
     
 }

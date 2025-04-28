@@ -20,6 +20,7 @@ export interface Gasto {
     descricao: string;
     valor: number;
     observacao: string | null;
+    pago: boolean;
     created_at: string;
 }
 

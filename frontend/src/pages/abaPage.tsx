@@ -15,6 +15,7 @@ import GanhosList from "../components/ganhosList";
 import GastosList from "../components/gastosList";
 import Resumo from "../components/resumo";
 import { FaHome } from "react-icons/fa";
+import PagosList from "../components/pagosList";
 
 export default function AbaPage() {
   const { id } = useParams<{ id: string }>();
@@ -66,7 +67,7 @@ export default function AbaPage() {
     setGanhos(ganhosData);
 
     const totalGanhos = await calcularTotalGanhos(parseInt(id!));
-    setResumo(prev => ({
+    setResumo((prev) => ({
       ...prev,
       totalGanhos,
       saldo: totalGanhos - prev.totalGastos,
@@ -78,7 +79,7 @@ export default function AbaPage() {
     setGastos(gastosData);
 
     const totalGastos = await calcularTotalGastos(parseInt(id!));
-    setResumo(prev => ({
+    setResumo((prev) => ({
       ...prev,
       totalGastos,
       saldo: prev.totalGanhos - totalGastos,
@@ -97,13 +98,13 @@ export default function AbaPage() {
     <div className="min-h-screen bg-gray-900 text-gray-100 p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
         <header className="flex items-center justify-between mb-8">
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="rounded-full p-2 bg-indigo-400 hover:bg-gradient-to-r to-purple-500 transition-colors duration-200"
           >
             <FaHome className="text-3xl" />
           </Link>
-          
+
           <div className="flex-1 text-center">
             <h1 className="text-xl font-bold">
               {aba.mes.toString().padStart(2, "0")}/{aba.ano}
@@ -111,7 +112,7 @@ export default function AbaPage() {
           </div>
         </header>
 
-        <div className="space-y-6">
+        <div className="space-y-6 mb-6">
           <div className="bg-gray-800 rounded-xl p-6 shadow-lg">
             <Resumo resumo={resumo} />
           </div>
@@ -119,10 +120,7 @@ export default function AbaPage() {
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-gray-800 rounded-xl p-6 shadow-lg">
               <GanhosForm aba_id={aba.id} onGanhoCriado={atualizarGanhos} />
-              <GanhosList
-                ganhos={ganhos}
-                onGanhoExcluido={atualizarGanhos}
-              />
+              <GanhosList ganhos={ganhos} onGanhoExcluido={atualizarGanhos} />
             </div>
 
             <div className="bg-gray-800 rounded-xl p-6 shadow-lg">
@@ -130,9 +128,17 @@ export default function AbaPage() {
               <GastosList
                 gastos={gastos}
                 onGastoExcluido={atualizarGastos}
+                onGastoAtualizado={atualizarGastos}
               />
             </div>
           </div>
+        </div>
+        <div className="bg-gray-800 rounded-xl p-6 shadow-lg">
+          <PagosList
+            gastos={gastos}
+            onGastoExcluido={atualizarGastos}
+            onGastoAtualizado={atualizarGastos}
+          />
         </div>
       </div>
     </div>

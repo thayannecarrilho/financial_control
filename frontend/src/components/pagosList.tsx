@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { Gasto } from "../services/types";
 import { atualizarPago, excluirGasto } from "../services/api";
-import { FaTrash, FaChevronDown, FaChevronUp, FaCheck } from "react-icons/fa";
+import { FaTrash, FaChevronDown, FaChevronUp} from "react-icons/fa";
+import { FaUpLong } from "react-icons/fa6";
 
-interface GastosListProps {
+interface PagosListProps {
   gastos: Gasto[];
   onGastoExcluido: () => void;
   onGastoAtualizado: () => void;
 }
 
-export default function GastosList({
+export default function PagosList({
   gastos,
   onGastoExcluido,
   onGastoAtualizado,
-}: GastosListProps) {
+}: PagosListProps) {
   const [expandedRows, setExpandedRows] = useState<number[]>([]);
 
   const handleExcluir = async (id: number) => {
@@ -42,13 +43,13 @@ export default function GastosList({
     }
   };
 
-  const gastosPagos = gastos.filter(gasto => gasto.pago);
+  const gastosPagos = gastos.filter(gasto => !gasto.pago);
 
   return (
     <div className="mt-6">
       <div className="flex items-center justify-center mb-4">
         <h3 className="text-lg font-semibold text-indigo-100">
-          Lista de Gastos
+          Lista de Pagos
         </h3>
       </div>
 
@@ -100,10 +101,10 @@ export default function GastosList({
                     <td className="px-5 py-3 text-right">
                       <button
                          onClick={() => handleAtualizar(gasto.id)}
-                        className="text-green-400 hover:text-green-300 mr-2 cursor-pointer"
+                        className="text-red-400 hover:text-red-300 mr-2 cursor-pointer"
                         title="Atualizar"
                       >
-                        <FaCheck />
+                        <FaUpLong />
                       </button>
                       <button
                         onClick={() => handleExcluir(gasto.id)}
@@ -144,10 +145,10 @@ export default function GastosList({
                               e.stopPropagation();
                               handleAtualizar(gasto.id);
                             }}
-                            className="text-green-400 hover:text-green-300"
+                            className="text-red-400 hover:text-red-300"
                             title="Atualizar"
                           >
-                            <FaCheck />
+                            <FaUpLong />
                           </button>
 
                           <button

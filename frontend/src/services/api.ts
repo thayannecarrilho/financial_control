@@ -34,10 +34,20 @@ export const calcularTotalGanhos = async (aba_id: number) => {
     return response.data.total;
 };
 
-export const criarGasto = async (aba_id: number, descricao: string, valor: number, observacao?: string) => {
-    const response = await api.post('/gastos', { aba_id, descricao, valor, observacao });
+export const criarGasto = async (
+    aba_id: number,
+    descricao: string,
+    valor: number,
+    observacao?: string,
+  ) => {
+    const response = await api.post('/gastos', {
+      aba_id,
+      descricao,
+      valor,
+      observacao,
+    });
     return response.data;
-};
+  };
 
 export const listarGastos = async (aba_id: number) => {
     const response = await api.get(`/abas/${aba_id}/gastos`);
@@ -49,7 +59,6 @@ export const calcularTotalGastos = async (aba_id: number) => {
     return response.data.total;
 };
 
-// Adicionar estas funções
 export const excluirAba = async (id: number) => {
     const response = await api.delete(`/abas/${id}`);
     return response.data;
@@ -62,6 +71,11 @@ export const excluirGanho = async (id: number) => {
 
 export const excluirGasto = async (id: number) => {
     const response = await api.delete(`/gastos/${id}`);
+    return response.data;
+};
+
+export const atualizarPago = async (id: number) => {
+    const response = await api.put(`/gastos/${id}`);
     return response.data;
 };
 
